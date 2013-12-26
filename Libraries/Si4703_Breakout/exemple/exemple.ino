@@ -5,23 +5,19 @@
 int resetPin = 2;
 int SDIO = A4;
 int SCLK = A5;
+//region : 0=Europe, 1=US
+int Region=1;
 
 
 
+Si4703_Breakout radio(resetPin, SDIO, SCLK,Region);
 
-//comment or uncomment US or Europe version
-
-//Europe version
-//Si4703_Breakout radio(resetPin, SDIO, SCLK,0);
-
-//US version
-Si4703_Breakout radio(resetPin, SDIO, SCLK,1);
-
-//end Europe or US version
 
 
 int channel=875;
 int volume=10;
+
+
 
 void setup()
 
