@@ -47,7 +47,7 @@ void Si4703_Breakout::setChannel(int channel)
 
   //delay(60); //Wait 60ms - you can use or skip this delay
 
-  //timeout
+  //set timeout duration
   long endTime = millis() + 2000;
   //Poll to see if STC is set
   while(millis() < endTime) {
@@ -59,6 +59,8 @@ void Si4703_Breakout::setChannel(int channel)
   si4703_registers[CHANNEL] &= ~(1<<TUNE); //Clear the tune after a tune has completed
   updateRegisters();
 
+  //set timeout duration
+  endTime = millis() + 2000;
   //Wait for the si4703 to clear the STC as well
   while(millis() < endTime) { 
     readRegisters();
@@ -74,10 +76,10 @@ int Si4703_Breakout::seekUp(){
 
 
 
+
 int Si4703_Breakout::seekDown(){
 	return seek(SEEK_DOWN);
 }
-
 
 
 
@@ -475,9 +477,9 @@ boolean Si4703_Breakout::si4703_init()
   pinMode(_sdioPin, OUTPUT); //SDIO is connected to A4 for I2C
   digitalWrite(_sdioPin, LOW); //A low SDIO indicates a 2-wire interface
   digitalWrite(_resetPin, LOW); //Put Si4703 into reset
-  delay(1); //Some delays while we allow pins to settle
+  delay(30); //Some delays while we allow pins to settle
   digitalWrite(_resetPin, HIGH); //Bring Si4703 out of reset with SDIO set to low and SEN pulled high with on-board resistor
-  delay(1); //Allow Si4703 to come out of reset
+  delay(30); //Allow Si4703 to come out of reset
 
   Wire.begin(); //Now that the unit is reset and I2C inteface mode, we need to begin I2C
 
@@ -593,7 +595,7 @@ int Si4703_Breakout::seek(byte seekDirection){
   si4703_registers[POWERCFG] &= ~(1<<SEEK); //Clear the seek bit after seek has completed
   updateRegisters();
 
-
+  endTime = millis() + 4000;
   //Wait for the si4703 to clear the STC as well
   while(millis() < endTime) {
     readRegisters();
