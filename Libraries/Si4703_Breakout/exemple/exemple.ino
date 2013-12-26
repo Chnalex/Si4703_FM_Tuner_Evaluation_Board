@@ -1,11 +1,10 @@
-
 #include <Si4703_Breakout.h>
 #include <Wire.h>
 
 //pinout from arduino micro
 int resetPin = 4;
-int SDIO = 2;
-int SCLK = 3;
+int SDIO = A4;
+int SCLK = A5;
 
 //comment or uncomment US or Europe version
 
