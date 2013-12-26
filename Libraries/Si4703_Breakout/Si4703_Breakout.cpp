@@ -494,8 +494,8 @@ boolean Si4703_Breakout::si4703_init()
 
   readRegisters(); //Read the current register set
   si4703_registers[POWERCFG] = 0x4001; //Enable the IC
-  //  si4703_registers[POWERCFG] |= (1<<SMUTE) | (1<<DMUTE); //Disable Mute, disable softmute
-  si4703_registers[POWERCFG] |= (1<<MONO);// sortie mono forcee
+  // si4703_registers[POWERCFG] |= (1<<SMUTE) | (1<<DMUTE); //Disable Mute, disable softmute
+  // si4703_registers[POWERCFG] |= (1<<MONO);// sortie mono forcee
   si4703_registers[SYSCONFIG1] |= (1<<RDS); //Enable RDS
 
   if (_region==1){
