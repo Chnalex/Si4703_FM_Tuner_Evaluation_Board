@@ -17,7 +17,7 @@ Si4703_Breakout radio(resetPin, SDIO, SCLK,1);
 //end Europe or US version
 
 
-int channel=927;
+int channel=875;
 int volume=10;
 
 void setup()
