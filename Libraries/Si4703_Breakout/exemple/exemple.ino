@@ -30,6 +30,7 @@ void setup()
   Serial.println("+ - Volume (max 15)");
   Serial.println("u d Seek up / down");
   Serial.println("r display RDS Data");
+  Serial.println("m display more RDS Data !!");
   Serial.println("Send me a command letter.");
   
 
@@ -82,13 +83,6 @@ void loop()
         Serial.print("programme service :");
         Serial.println(PS);
         
-        //get radio text
-        Serial.println("Retreiving RDS Data please wait...(15sec max)");
-        char RT[64];
-        radio.readRT(RT);
-        Serial.print("radio text :");
-        Serial.println(RT);  
-    
         //get programme ID
         long PId=radio.readPI();
         Serial.print("programme ID :");
@@ -155,9 +149,19 @@ void loop()
            Serial.print(" ");    
         }
         Serial.println("");
-        
+    } 
+    else if (ch == 'm')
+    {  
+    
+        //get radio text
+        Serial.println("Retreiving Radio Text data please wait...(15sec max)");
+        char RT[64];
+        radio.readRT(RT);
+        Serial.print("radio text :");
+        Serial.println(RT);  
+    
         //get clock time
-        Serial.println("Retreiving RDS Data please wait...(70sec max)");
+        Serial.println("Retreiving Clock-Time Data please wait...(70sec max)");
         int CT[5]={0,0,0,0,0};
         radio.readCT(CT);
         Serial.print("Clock time : ");
@@ -182,19 +186,12 @@ void loop()
 
 void displayInfo()
 {
-   
-   char PS[8];
-   radio.readPS(PS);
-   Serial.println("");
-   Serial.println("");
    Serial.print("Channel:"); 
    Serial.print(channel);
-   Serial.print(" - ");
-   Serial.print(PS);
    Serial.print(" (signal level :");
    int RSSI=radio.getRSSI();
    Serial.print(RSSI);
    Serial.println(")");
-   
-   Serial.print(" Volume:"); Serial.println(volume);
+   Serial.print(" Volume:"); 
+   Serial.println(volume);
 }
