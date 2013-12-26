@@ -500,9 +500,11 @@ boolean Si4703_Breakout::si4703_init()
 
   if (_region==1){
     si4703_registers[SYSCONFIG1] |= (0<<DE); //75us US setup
+    si4703_registers[SYSCONFIG2] |= (0<<SPACE1);
     si4703_registers[SYSCONFIG2] |= (0<<SPACE0);//200kHz channel spacing for US
   } else {
     si4703_registers[SYSCONFIG1] |= (1<<DE); //50us Europe setup
+    si4703_registers[SYSCONFIG2] |= (0<<SPACE1);
     si4703_registers[SYSCONFIG2] |= (1<<SPACE0); //100kHz channel spacing for Europe
   }
 
