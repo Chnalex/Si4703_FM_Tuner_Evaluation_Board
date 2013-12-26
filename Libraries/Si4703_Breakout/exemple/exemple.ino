@@ -25,6 +25,7 @@ void setup()
   
   Serial.begin(9600);
   delay(1000);
+
   Serial.println("\n\nSi4703_Breakout Test Sketch");
   Serial.println("===========================");
   Serial.println("+ - Volume (max 15)");
@@ -33,11 +34,10 @@ void setup()
   Serial.println("m display more RDS Data !!");
   Serial.println("Send me a command letter.");
   
-
+  
   radio.powerOn();
   radio.setVolume(volume);
   radio.setChannel(channel);
-  displayInfo();
   
 }
 
